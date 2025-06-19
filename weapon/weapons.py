@@ -7,6 +7,7 @@ TYPES_WEAPONS = ['spell', 'two-handed', 'one-handed', 'handgrips', 'archery']
 class FireBoll(AbstractWeapon):
     type = 'spell'
     type_damage = Fire
+    cost = 20
     damage = 40
 
 

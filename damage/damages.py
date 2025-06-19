@@ -4,14 +4,15 @@ TYPES_DAMAGES = ['fire', 'frost', 'magic', 'physical', 'lightning', 'poison']
 
 class Physical(AbstractDamage):
     type = 'physical'
-    chance_to_stun:float = 0.1
+    name_special_effect = 'stun'
     critical_chance = 0.1
     critical_multiplier = 2
 
 
 class Frost(AbstractDamage):
     type = 'frost'
-    chance_to_freeze:float = 0.15
+    name_special_effect = 'freeze'
+    chance_special_effect = 0.2
 
 
 class Magic(AbstractDamage):
@@ -23,6 +24,8 @@ class Magic(AbstractDamage):
 class Fire(AbstractDamage):
     type = 'fire'
     chance_to_light:float = 0.2
+    name_special_effect = 'fire'
+    chance_special_effect = 0.2
 
 
 class Lightning(AbstractDamage):

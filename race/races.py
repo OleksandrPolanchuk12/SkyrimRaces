@@ -1,4 +1,6 @@
 from .base_race import AbstractRace
+from typing import Optional
+from damage.damages import TYPES_DAMAGES
 
 
 class HighElf(AbstractRace):
@@ -24,8 +26,9 @@ class HighElf(AbstractRace):
         'Weakness to Fire': '25%'
     }
 
-    def receive_damage(self, type_damage:str, strength:float):
-        super().receive_damage(type_damage, strength)
+    def receive_damage(self, type_damage:str, strength:float) -> None:
+        if type_damage not in TYPES_DAMAGES:
+            raise ValueError(f'Damage type {type_damage} does not exists')
         damage = strength
         if type_damage == 'fire':
             damage += damage/4
@@ -56,8 +59,9 @@ class Khajiit(AbstractRace):
         'Weakness to Fire': '25%'
     }
 
-    def receive_damage(self, type_damage:str, strength:float):
-        super().receive_damage(type_damage, strength)
+    def receive_damage(self, type_damage:str, strength:float) -> None:
+        if type_damage not in TYPES_DAMAGES:
+            raise ValueError(f'Damage type {type_damage} does not exists')
         damage = strength
         if type_damage == 'fire':
             damage += damage/4
@@ -84,8 +88,9 @@ class DarkElf(AbstractRace):
         'Weakness to Frost': '25%'
     }
 
-    def receive_damage(self, type_damage:str, strength:float):
-        super().receive_damage(type_damage, strength)
+    def receive_damage(self, type_damage:str, strength:float) -> None:
+        if type_damage not in TYPES_DAMAGES:
+            raise ValueError(f'Damage type {type_damage} does not exists')
         damage = strength
         if type_damage == 'frost':
             damage += damage/4

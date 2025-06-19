@@ -10,24 +10,24 @@ class AbstractRace(ABC):
     magic:float = 100
     endurance:float = 100
     skills:dict = {
-        'Alchemy': 15,
-        'Alteration': 15,
-        'Archery': 15,
-        'Block': 15,
-        'Conjuration': 15,
-        'Destruction': 15,
-        'Enchanting': 15,
-        'Heavy Armor': 15,
-        'Illusion': 15,
-        'Light Armor': 15,
-        'Lockpicking': 15,
-        'One-Handed': 15,
-        'Pickpocket': 15,
-        'Restoration': 15,
-        'Smithing': 15,
-        'Sneak': 15,
-        'Speech': 15,
-        'Two-Handed': 15
+        'alchemy': 15,
+        'alteration': 15,
+        'archery': 15,
+        'block': 15,
+        'conjuration': 15,
+        'destruction': 15,
+        'enchanting': 15,
+        'heavy armor': 15,
+        'illusion': 15,
+        'light armor': 15,
+        'lockpicking': 15,
+        'one-handed': 15,
+        'pickpocket': 15,
+        'restoration': 15,
+        'smithing': 15,
+        'sneak': 15,
+        'speech': 15,
+        'two-handed': 15
     }
     abilities:dict = {}
     power:dict = {}
@@ -54,10 +54,6 @@ class AbstractRace(ABC):
         for key, value in self.initial_bonuses.items():
             skills[key] += value
         return skills
-
-    def receive_damage(self, type_damage:str, strength:float) -> None:
-        if type_damage not in TYPES_DAMAGES:
-            raise ValueError(f'Damage type {type_damage} does not exists')
 
     def get_main_characteristic(self) -> Optional[dict]:
         return {
