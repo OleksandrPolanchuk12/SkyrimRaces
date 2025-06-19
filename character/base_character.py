@@ -2,6 +2,7 @@ from abc import ABC
 from typing import Optional
 import random
 from weapon.weapons import TYPES_WEAPONS
+from damage.damages import TYPES_DAMAGES
 
 
 TYPE_CHARACTERISTIC = ['health', 'endurance', 'magic']
@@ -10,6 +11,7 @@ class AbstractCharacter(ABC):
     name:str = None
     race:object = None
     weapon:object = None
+    suite:object = None
     level:int = None
 
     def attack(self) -> Optional[dict]:
@@ -39,6 +41,18 @@ class AbstractCharacter(ABC):
                 result['effect_worked'] = True
 
         return result
+
+    def receive_damage(self, type_damage:str, strength:float) -> None:
+        if type_damage not in TYPES_DAMAGES:
+            raise ValueError(f'Damage type {type_damage} does not exists')
+
+        damage = self.race.damage_from_weaknesses_and_resist(type_damage, strength)
+        total_protection = self.suite.get_total_protection()
+        if type_damage != 'physical':
+            total_protection = total_protection/2
+        if damage > total_protection:
+            dmg = damage - total_protection
+            self.race.health -= dmg
 
     def skill_damage_bonus(self, weapon_type:str, damage:float) -> Optional[float]:
         if weapon_type not in TYPES_WEAPONS:

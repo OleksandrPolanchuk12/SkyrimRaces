@@ -16,8 +16,8 @@ class HighElf(AbstractRace):
         'highborn': 'Regenerate magicka 25x faster for 60 seconds, once per day'
     }
     initial_bonuses = {
-        'Illusion': 10,
-        'Alteration': 5
+        'illusion': 10,
+        'alteration': 5
     }
     survival_mode_bonuses = {
         'Resist Fatigue': '25%'
@@ -26,13 +26,11 @@ class HighElf(AbstractRace):
         'Weakness to Fire': '25%'
     }
 
-    def receive_damage(self, type_damage:str, strength:float) -> None:
-        if type_damage not in TYPES_DAMAGES:
-            raise ValueError(f'Damage type {type_damage} does not exists')
+    def damage_from_weaknesses_and_resist(self, type_damage: str, strength: float) -> Optional[float]:
         damage = strength
         if type_damage == 'fire':
             damage += damage/4
-        self.health -= damage
+        return damage
 
 
 class Khajiit(AbstractRace):
@@ -48,8 +46,8 @@ class Khajiit(AbstractRace):
         'Night Eye': 'Improved night vision for 60 seconds, can be used multiple times a day.'
     }
     initial_bonuses = {
-        'Sneak': 10,
-        'Alchemy': 5
+        'sneak': 10,
+        'alchemy': 5
     }
     survival_mode_bonuses = {
         'Warmth': 15
@@ -59,13 +57,11 @@ class Khajiit(AbstractRace):
         'Weakness to Fire': '25%'
     }
 
-    def receive_damage(self, type_damage:str, strength:float) -> None:
-        if type_damage not in TYPES_DAMAGES:
-            raise ValueError(f'Damage type {type_damage} does not exists')
+    def damage_from_weaknesses_and_resist(self, type_damage: str, strength: float) -> Optional[float]:
         damage = strength
         if type_damage == 'fire':
             damage += damage/4
-        self.health -= damage
+        return damage
 
 
 class DarkElf(AbstractRace):
@@ -78,8 +74,8 @@ class DarkElf(AbstractRace):
         "Ancestor's Wrath": 'Opponents getting too close take 8 points of fire damage per second for 60 seconds, once per day'
     }
     initial_bonuses = {
-        'Destruction': 10,
-        'Alteration': 5
+        'destruction': 10,
+        'alteration': 5
     }
     survival_mode_bonuses = {
         'Fatigue': '25%'
@@ -88,13 +84,11 @@ class DarkElf(AbstractRace):
         'Weakness to Frost': '25%'
     }
 
-    def receive_damage(self, type_damage:str, strength:float) -> None:
-        if type_damage not in TYPES_DAMAGES:
-            raise ValueError(f'Damage type {type_damage} does not exists')
+    def damage_from_weaknesses_and_resist(self,type_damage:str, strength:float) -> Optional[float]:
         damage = strength
         if type_damage == 'frost':
             damage += damage/4
         if type_damage == 'fire':
             damage -= damage/4
-        self.health -= damage
+        return damage
 

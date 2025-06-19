@@ -1,11 +1,8 @@
 from character.characters import Character1
 
 character = Character1()
-print(character.race.magic)
-damage = character.attack()
-print(damage)
-print(character.race.get_main_characteristic(self=character.race))
-
-character.race.receive_damage(self=character.race, type_damage='fire', strength=20)
-
-print(character.race.get_main_characteristic(self=character.race))
+print(character.race.get_main_characteristic())
+print(character.suite.get_total_protection())
+character.receive_damage('fire',30)
+print(character.race.get_main_characteristic())
+character.race.get_characteristic()

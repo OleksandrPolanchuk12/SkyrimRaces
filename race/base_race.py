@@ -61,3 +61,6 @@ class AbstractRace(ABC):
             'magic': self.magic,
             'endurance': self.endurance
         }
+
+    def damage_from_weaknesses_and_resist(self, type_damage:str, strength:float) -> Optional[float]:
+        raise NotImplementedError
