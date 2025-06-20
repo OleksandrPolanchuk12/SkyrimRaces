@@ -17,7 +17,7 @@ class AbstractCharacter(ABC):
     def attack(self) -> Optional[dict]:
         critical_chance = self.weapon.type_damage.critical_chance
         critical_multiplier = self.weapon.type_damage.critical_multiplier
-        damage = self.weapon.damage
+        damage = self.weapon.get_damage()
         type_weapon = self.weapon.type
 
         if random.random() <= critical_chance:
@@ -30,6 +30,7 @@ class AbstractCharacter(ABC):
 
         result = {
             'damage': self.skill_damage_bonus(type_weapon, damage),
+            'type_damage': self.weapon.type_damage,
             'effect': None,
             'effect_worked': False
         }
@@ -47,12 +48,8 @@ class AbstractCharacter(ABC):
             raise ValueError(f'Damage type {type_damage} does not exists')
 
         damage = self.race.damage_from_weaknesses_and_resist(type_damage, strength)
-        total_protection = self.suite.get_total_protection()
-        if type_damage != 'physical':
-            total_protection = total_protection/2
-        if damage > total_protection:
-            dmg = damage - total_protection
-            self.race.health -= dmg
+        dmg = self.suite.get_total_damage(damage)
+        self.race.health -= dmg
 
     def skill_damage_bonus(self, weapon_type:str, damage:float) -> Optional[float]:
         if weapon_type not in TYPES_WEAPONS:

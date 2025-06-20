@@ -1,4 +1,5 @@
 from .base_armor import AbstractArmor
+from enchantment.enchantments import FireProtection
 
 
 TYPE_ARMOR = ['heavy', 'light']
@@ -10,6 +11,7 @@ class SteelHelmet(AbstractArmor):
     type_armor = 'heave'
     protection = 10
     part_armor = 'helmet'
+    enchantment = FireProtection()
 
 
 class SteelBreastplate(AbstractArmor):
