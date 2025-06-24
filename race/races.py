@@ -1,6 +1,5 @@
 from .base_race import AbstractRace
 from typing import Optional
-from damage.damages import TYPES_DAMAGES
 
 
 class HighElf(AbstractRace):

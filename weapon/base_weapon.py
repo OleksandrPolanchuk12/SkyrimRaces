@@ -1,10 +1,11 @@
 from abc import ABC
 from typing import Optional
+from enums import TypeDamagesEnum
 
 
 class AbstractWeapon(ABC):
     def __init__(self):
-        if self.type_damage.type != 'physical' and self.enchantment:
+        if self.type_damage.type != TypeDamagesEnum.PHYSICAL and self.enchantment:
             raise ValueError('Weapons is already enchantment')
 
     type:str = None

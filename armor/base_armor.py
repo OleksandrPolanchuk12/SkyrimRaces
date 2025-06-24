@@ -1,5 +1,6 @@
 from abc import ABC
 from typing import Optional
+from enums import TypeArmorEnum
 
 
 class AbstractArmor(ABC):
@@ -39,3 +40,14 @@ class AbstractSuite(ABC):
         if damage > total_protection:
             dmg = damage - total_protection
         return dmg
+
+    def get_speed_ratio(self) -> Optional[float]:
+        speed_ratio = 1
+        suite = [self.helmet, self.breastplate, self.leggings, self.boots]
+        for i in suite:
+            if i.type_armor ==TypeArmorEnum.HEAVY:
+                speed_ratio -= 0.1
+            else:
+                speed_ratio -= 0.05
+
+        return speed_ratio

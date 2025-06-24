@@ -1,6 +1,5 @@
 from abc import ABC
 from typing import Optional
-from damage.damages import TYPES_DAMAGES
 
 
 class AbstractRace(ABC):

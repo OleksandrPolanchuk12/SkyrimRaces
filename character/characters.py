@@ -5,6 +5,7 @@ from race.races import Khajiit
 from weapon.weapons import Handgrips, Sword, FireBoll
 from armor.suites import SteelSuite
 import random
+from inventory.inventories import CharacterInventory
 
 
 class Character1(AbstractCharacter):
@@ -14,6 +15,7 @@ class Character1(AbstractCharacter):
     name = '1'
     race = Khajiit()
     weapon = Sword()
-    suite = SteelSuite()
+    suite = None
     level = 1
+    inventory = CharacterInventory()
 
