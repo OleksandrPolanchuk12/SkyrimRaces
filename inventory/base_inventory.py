@@ -13,6 +13,9 @@ class AbstractInventory(ABC):
         self.enchant: List[EnchantItem] = []
         self.other: List[OtherItem] = []
 
+    cargo_capacity: float = None
+    status: str = 'these is not overloaded'
+
     def add_item(self, item:object) -> None:
         if item.item_type.value == ItemTypeEnum.WEAPON.value:
             self.weapons.append(item)
@@ -24,6 +27,19 @@ class AbstractInventory(ABC):
             self.enchant.append(item)
         else:
             self.other.append(item)
+            total_weight = 0
+        for i in [self.weapons, self.armor, self.potion, self.enchant, self.other]:
+            for j in i:
+                total_weight += j.weight
+
+        weight = -(self.cargo_capacity * 0.6)
+
+        if self.cargo_capacity - total_weight < 0:
+            self.status = 'overloaded'
+        elif self.cargo_capacity - total_weight <= weight:
+            self.status = 'impossible to move'
+        else:
+            self.status = 'these is not overloaded'
 
     def get_inventory(self):
         return [self.weapons, self.armor, self.potion, self.enchant, self.other]
