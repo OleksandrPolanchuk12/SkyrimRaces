@@ -10,3 +10,5 @@ class AbstractItem(ABC):
         self.item_type = item_type
         self.weight = weight
         self.stackable = stackable
+
+    number: int = 1

@@ -11,16 +11,21 @@ character =Character1()
 
 inventory = character.inventory
 
-# item1 = ArmorItem(name='1', description='2', item_type=ItemTypeEnum.ARMOR, weight=10, stackable=True, armor=SteelHelmet())
-# item2 = ArmorItem(name='1', description='2', item_type=ItemTypeEnum.ARMOR, weight=10, stackable=True, armor=SteelBreastplate())
-# item3 = ArmorItem(name='1', description='2', item_type=ItemTypeEnum.ARMOR, weight=10, stackable=True, armor=SteelLeggings())
-# item4 = ArmorItem(name='1', description='2', item_type=ItemTypeEnum.ARMOR, weight=10, stackable=True, armor=SteelBoots())
-#
-# inventory.add_item(item1)
-# inventory.add_item(item2)
-# inventory.add_item(item3)
-# inventory.add_item(item4)
-#
+item1 = ArmorItem(name='11', description='2', item_type=ItemTypeEnum.ARMOR, weight=10, stackable=True, armor=SteelHelmet())
+item2 = ArmorItem(name='12', description='2', item_type=ItemTypeEnum.ARMOR, weight=10, stackable=True, armor=SteelBreastplate())
+item3 = ArmorItem(name='13', description='2', item_type=ItemTypeEnum.ARMOR, weight=10, stackable=True, armor=SteelLeggings())
+item4 = ArmorItem(name='14', description='2', item_type=ItemTypeEnum.ARMOR, weight=10, stackable=True, armor=SteelBoots())
+
+inventory.add_item(item1)
+inventory.add_item(item2)
+inventory.add_item(item3)
+
+
+print(inventory.armor[3].number)
+print(inventory.cargo_capacity)
+print(inventory.get_inventory())
+# inventory.update_cargo_status()
+print(character.inventory.status)
 #
 # character.change_suite(SteelSuite())
 #
