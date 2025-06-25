@@ -20,10 +20,11 @@ class ArmorItem(AbstractItem):
 
 
 class PotionItem(AbstractItem):
-    def __init__(self, name: str, description: str, item_type: ItemTypeEnum, weight: float,
+    def __init__(self, description: str, item_type: ItemTypeEnum, weight: float,
                  potion: AbstractPotion, stackable: bool = False):
-        super().__init__(name, description, item_type, weight, stackable)
+        super().__init__(potion.name, description, item_type, weight, stackable)
         self.potion = potion
+        self.name = potion.name
 
 
 class EnchantItem(AbstractItem):
@@ -34,4 +35,5 @@ class EnchantItem(AbstractItem):
 
 
 class OtherItem(AbstractItem):
-    pass
+    def __init__(self, name: str, description: str, item_type: ItemTypeEnum, weight: float, stackable: bool = False):
+        super().__init__(name, description, item_type, weight, stackable)

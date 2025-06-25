@@ -36,6 +36,7 @@ class ItemTypeEnum(Enum):
     ARMOR = 'armor'
     POTION = 'potion'
     ENCHANT = 'enchant'
+    OTHER = 'other'
 
 
 class TypePotionEnum(Enum):
