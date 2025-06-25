@@ -13,6 +13,14 @@ class AbstractWeapon(ABC):
     damage:float = None
     enchantment:object = None
 
+    def __str__(self):
+        return (
+            f"Weapon Type: {self.type}\n"
+            f"Damage Type: {self.type_damage}\n"
+            f"Damage: {self.damage}\n"
+            f"Enchantment: {self.enchantment if self.enchantment else 'None'}"
+        )
+
     def get_damage(self) -> Optional[float]:
         damage = self.enchantment.get_bonus(self.damage)
         self.type_damage = damage['type_damage']

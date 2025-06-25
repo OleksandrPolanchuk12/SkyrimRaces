@@ -36,3 +36,9 @@ class ItemTypeEnum(Enum):
     ARMOR = 'armor'
     POTION = 'potion'
     ENCHANT = 'enchant'
+
+
+class TypePotionEnum(Enum):
+    HEALTH = 'health'
+    ENDURANCE = 'endurance'
+    MAGIC = 'magic'

@@ -10,3 +10,12 @@ class AbstractPotion(ABC):
 
     def get_bonus(self) -> Optional[dict]:
         raise NotImplementedError
+
+    def __str__(self):
+        return (
+            f"Name: {self.name}\n"
+            f"Ingredients: {', '.join(f'{k}: {v}' for k, v in self.ingredients.items())}\n"
+            f"Effect: {', '.join(f'{k}: {v}' for k, v in self.effect.items())}\n"
+            f"Duration: {self.duration}"
+        )
+

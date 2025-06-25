@@ -12,3 +12,12 @@ class AbstractItem(ABC):
         self.stackable = stackable
 
     number: int = 1
+
+    def __str__(self):
+        return (
+            f"{self.name} ({self.item_type.name})\n"
+            f"Description: {self.description}\n"
+            f"Weight: {self.weight}kg\n"
+            f"Stackable: {'Yes' if self.stackable else 'No'}\n"
+            f"Quantity: {self.number}"
+        )

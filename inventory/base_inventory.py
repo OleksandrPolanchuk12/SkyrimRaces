@@ -16,6 +16,17 @@ class AbstractInventory(ABC):
     cargo_capacity: float = None
     status: str = 'not overloaded'
 
+    def __str__(self):
+        return (
+            f"Weapons: {self.weapons}\n"
+            f"Armor: {self.armor}\n"
+            f"Potion: {self.potion}\n"
+            f"Enchant: {self.enchant}\n"
+            f"Other: {self.other}\n"
+            f"Cargo capacity: {self.cargo_capacity}\n"
+            f"Status: {self.status}\n"
+        )
+
     def add_item(self, item:object) -> None:
         item_list = None
 
@@ -57,9 +68,6 @@ class AbstractInventory(ABC):
             self.status = 'overloaded'
         else:
             self.status = 'not overloaded'
-
-    def get_inventory(self):
-        return [self.weapons, self.armor, self.potion, self.enchant, self.other]
 
     def get_specific_section(self, section: ItemTypeEnum):
         if section.value == ItemTypeEnum.WEAPON.value:

@@ -12,6 +12,7 @@ class Character1(AbstractCharacter):
     def __init__(self):
         if isinstance(self.weapon, Handgrips):
             self.weapon.damage += self.race.abilities['Claws']
+        super().__init__()
     name = '1'
     race = Khajiit()
     weapon = Sword()

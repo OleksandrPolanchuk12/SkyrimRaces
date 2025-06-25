@@ -1,7 +1,7 @@
 from abc import ABC
 from typing import Optional
 import random
-from enums import TypeDamagesEnum, TypeWeaponsEnum
+from enums import TypeDamagesEnum, TypeWeaponsEnum, TypePotionEnum
 from armor.base_armor import AbstractSuite
 from weapon.base_weapon import AbstractWeapon
 
@@ -13,7 +13,8 @@ class AbstractCharacter(ABC):
         self.health = self.race.health
         self.magic = self.race.magic
         self.endurance = self.race.endurance
-        self.speed_ratio = self.suite.get_speed_ratio()
+        if self.suite:
+            self.speed_ratio = self.suite.get_speed_ratio()
 
     name:str = None
     race:object = None
@@ -25,6 +26,20 @@ class AbstractCharacter(ABC):
     endurance: float = None
     speed_ratio: float = 1
     inventory: object = None
+
+    def __str__(self):
+        return (
+        f"Name: {self.name}\n"
+        f"Race: {self.race}\n"
+        f"Weapon: {self.weapon}\n"
+        f"Suite: {self.suite}\n"
+        f"Level: {self.level}\n"
+        f"Health: {self.health}\n"
+        f"Magic: {self.magic}\n"
+        f"Endurance: {self.endurance}\n"
+        f"Speed Ratio: {self.speed_ratio}\n"
+        f"Inventory: {self.inventory}"
+    )
 
     def attack(self) -> Optional[dict]:
         critical_chance = self.weapon.type_damage.critical_chance
@@ -118,7 +133,6 @@ class AbstractCharacter(ABC):
             raise ValueError(f"Weapon '{weapon}' does not exist in inventory.")
         self.weapon = weapon
 
-
     def change_suite(self, suite:AbstractSuite):
         armors = [suite.helmet, suite.breastplate, suite.leggings, suite.boots]
         for i in armors:
@@ -127,3 +141,37 @@ class AbstractCharacter(ABC):
 
         self.suite = suite
         self.speed_ratio = self.suite.get_speed_ratio()
+
+    def use_potion(self, name_potion: str) -> None:
+        potions = self.inventory.potion
+        for i in potions:
+            if i.potion.name == name_potion:
+                bonus = i.potion.get_bonus()
+
+                if bonus:
+                    if bonus['type'] == TypePotionEnum.HEALTH:
+                        if self.health + bonus['bonus'] < self.race.health:
+                            self.health += bonus['bonus']
+                        else:
+                            self.health = self.race.health
+
+                    if bonus['type'] == TypePotionEnum.MAGIC:
+                        if self.magic + bonus['bonus'] < self.race.magic:
+                            self.magic += bonus['bonus']
+                        else:
+                            self.magic = self.race.magic
+
+                    if bonus['type'] == TypePotionEnum.ENDURANCE:
+                        if self.endurance + bonus['bonus'] < self.race.endurance:
+                            self.endurance += bonus['bonus']
+                        else:
+                            self.endurance = self.race.endurance
+
+                if getattr(i, 'number', 1) > 1:
+                    i.number -= 1
+                else:
+                    potions.remove(i)
+                return
+
+        raise ValueError('Potion does not exist in inventory')
+

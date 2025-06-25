@@ -34,19 +34,18 @@ class AbstractRace(ABC):
     survival_mode_bonuses:dict = {}
     weaknesses:dict = {}
 
-    def get_characteristic(self) -> Optional[dict]:
-        return {
-            'name': self.name,
-            'domain': self.domain,
-            'health': self.health,
-            'magic': self.magic,
-            'endurance': self.endurance,
-            'abilities': self.abilities,
-            'power': self.power,
-            'initial_bonuses': self.initial_bonuses,
-            'survival_mode_bonuses': self.survival_mode_bonuses,
-            'skills': self.get_skills()
-        }
+    def __str__(self):
+        return (
+            f"Race: {self.name}\n"
+            f"Domain: {self.domain}\n"
+            f"Health: {self.health}, Magic: {self.magic}, Endurance: {self.endurance}\n"
+            f"Skills: {self.skills}\n"
+            f"Abilities: {self.abilities}\n"
+            f"Power: {self.power}\n"
+            f"Initial Bonuses: {self.initial_bonuses}\n"
+            f"Survival Bonuses: {self.survival_mode_bonuses}\n"
+            f"Weaknesses: {self.weaknesses}"
+        )
 
     def get_skills(self) -> Optional[dict]:
         skills = self.skills
