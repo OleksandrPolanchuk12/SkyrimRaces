@@ -15,7 +15,7 @@ class Character1(AbstractCharacter):
         super().__init__()
     name = '1'
     race = Khajiit()
-    weapon = Sword()
+    weapon = None
     suite = None
     level = 1
     inventory = CharacterInventory()

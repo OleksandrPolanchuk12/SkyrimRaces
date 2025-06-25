@@ -8,20 +8,36 @@ from armor.armors import SteelBoots, SteelHelmet, SteelBreastplate, SteelLegging
 from armor.suites import SteelSuite
 from potion.posions import HealPotion
 from craft.crafts import HealPotionCraft
+from enchantment.enchantments import FireDamage
+from enchantment_item.enchantment_items import EnchantmentItem
+from weapon.weapons import Sword
 
 character = Character1()
 
 inventory = character.inventory
 
-item1 = OtherItem(name='Butterfly Wing', description='2', item_type=ItemTypeEnum.OTHER, weight=1, stackable=True)
-item2 = OtherItem(name='Blue Mountain Flower', description='2', item_type=ItemTypeEnum.OTHER, weight=1, stackable=True)
+item1 = EnchantItem(name='1', description='2', item_type=ItemTypeEnum.ENCHANT, weight=1, stackable=True, enchant=FireDamage())
+item2 = WeaponItem(name='1', description='2', item_type=ItemTypeEnum.WEAPON, weight=1, stackable=True, weapon=Sword())
 inventory.add_item(item2)
 inventory.add_item(item1)
-inventory.add_item(item2)
-inventory.add_item(item1)
-print(inventory)
-HealPotionCraft().craft_item(inventory)
-print(inventory)
+character.change_weapon(Sword())
+print(character.weapon)
+EnchantmentItem(enchant=inventory.enchant[0], item=character.weapon)
+print(character.weapon)
+
+
+
+
+
+# item1 = OtherItem(name='Butterfly Wing', description='2', item_type=ItemTypeEnum.OTHER, weight=1, stackable=True)
+# item2 = OtherItem(name='Blue Mountain Flower', description='2', item_type=ItemTypeEnum.OTHER, weight=1, stackable=True)
+# inventory.add_item( item2)
+# inventory.add_item(item1)
+# inventory.add_item(item2)
+# inventory.add_item(item1)
+# print(inventory)
+# HealPotionCraft().craft_item(inventory)
+# print(inventory)
 
 
 

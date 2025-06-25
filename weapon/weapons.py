@@ -14,7 +14,7 @@ class Sword(AbstractWeapon):
     type = TypeWeaponsEnum.ONE_HANDED
     type_damage = Physical()
     damage = 50
-    enchantment = FireDamage()
+    enchantment = None
 
 
 class Handgrips(AbstractWeapon):
